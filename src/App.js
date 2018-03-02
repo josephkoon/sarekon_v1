@@ -18,11 +18,11 @@ class App extends Component {
       <div>
   			<Header />
 
-  			<div class='col-xs-3'>
+  			<div className='col-xs-3'>
   				<ObjectSelector />
   			</div>
 
-        <div class='col-xs-9'>
+        <div className='col-xs-9'>
           <ObjectMap />
           <ObjectCommand />
           <ObjectDetail />

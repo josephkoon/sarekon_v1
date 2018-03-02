@@ -28,7 +28,8 @@ class Header extends Component {
                   <ul className="dropdown-menu">
                     <li><a href="#">Settings</a></li>
                     <li role="separator" className="divider"></li>
-                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Logout</a></li>
+
                   </ul>
                 </li>
               </ul>

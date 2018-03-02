@@ -11,7 +11,7 @@ class ObjectSelector extends Component {
 	renderList(){
 		return this.props.vehicles.map((vehicle) => {
 			return (
-				<li onClick={() => this.props.addActiveVehicle(vehicle)} className='list-group-item'><h6>{vehicle.name}</h6></li>
+				<li key={vehicle.name} onClick={() => this.props.addActiveVehicle(vehicle)} className='list-group-item'><h6><input type="checkbox" value="" /> {vehicle.name}</h6></li>
 			)
 		})
 	}
@@ -19,11 +19,20 @@ class ObjectSelector extends Component {
 
     render() {
 	    return ( 
-			<ul className='list-group'>
-				{this.renderList()}
-			</ul>
+	    	<div>
+		    	<h6>Search [Go]</h6>
+		    	<h6>Filter By Group [Go]</h6>
+		    	<h6>Status [Red / Blue]</h6>
+				<ul className='list-group'>
+					{this.renderList()}
+				</ul>
+				<h6>Prev Page / Next Page</h6>
+				<h6>Refresh</h6>
+				<h6>1-5 of 150</h6>
+			</div>
 	    )
   	}	
+
 
 }
 

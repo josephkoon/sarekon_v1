@@ -6,7 +6,7 @@ class ObjectDetail extends Component {
 	renderList(){
 		return this.props.activeVehicles.map((vehicle) => {
 			return (
-				<div className='col-xs-4'>
+				<div key={vehicle.name} className='col-xs-4'>
 					<h6>Name: {vehicle.name}</h6>
 					<h6>Stock Number: {vehicle.stockNumber}</h6>
 					<h6>Vin: {vehicle.vin}</h6>
