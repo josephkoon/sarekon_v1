@@ -1,58 +1,46 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+
+import { getVehicles } from '../actions/vehiclesActions'
+import { addActiveVehicle } from '../actions/activeVehiclesActions'
 
 class ObjectSelector extends Component {
 
-  //vehicle data
-  constructor(props){
-    super(props)
-    this.state = {
-      vehicles:[
-        {"name":"Vehicle 1", "stockNumber":"1234", "vin":"1234", "make":"volkwswagon","model":"jetta"},
-        {"name":"Vehicle 2", "stockNumber":"1234", "vin":"1234", "make":"volkwswagon","model":"jetta"},
-        {"name":"Vehicle 3", "stockNumber":"1234", "vin":"1234", "make":"volkwswagon","model":"jetta"},
-        {"name":"Vehicle 4", "stockNumber":"1234", "vin":"1234", "make":"volkwswagon","model":"jetta"},
-        {"name":"Vehicle 5", "stockNumber":"1234", "vin":"1234", "make":"volkwswagon","model":"jetta"}
-      ]
-    }
-  }
+
+	renderList(){
+		return this.props.vehicles.map((vehicle) => {
+			return (
+				<li onClick={() => this.props.addActiveVehicle(vehicle)} className='list-group-item'><h6>{vehicle.name}</h6></li>
+			)
+		})
+	}
 
 
-  render() {
+    render() {
+	    return ( 
+			<ul className='list-group'>
+				{this.renderList()}
+			</ul>
+	    )
+  	}	
 
-    //list of vehicles
-    const vehicleItems = this.state.vehicles.map((vehicle) => {
-      return (
-         <div>
-            <li class="list-group-item">
-              <h6><input type="checkbox" value="" /> {vehicle.name}</h6>
-            </li>
-          </div>
-        )
-    })
-
-    return (
-      <div>
-        <h6>Search [Go]</h6>
-        <h6>Filter By Group [Go]</h6>
-        <h6>Status [Red][Blue] Show [50]</h6>
-
-        <div>
-          <ul class="list-group">
-            {vehicleItems}
-          </ul>
-        </div>
-
-        <h6>Prev Page / Next Page</h6>
-        <h6>Refresh</h6>
-        <h6>1-50 of 100</h6>
-      </div>
-    )
-
-  }
 }
 
-export default ObjectSelector;
 
 
+
+function mapStateToProps(state){
+	return {
+		vehicles: state.vehicles.vehicles
+	}
+}
+
+function mapDispatchToProps(dispatch){
+	return bindActionCreators({getVehicles: getVehicles, addActiveVehicle:addActiveVehicle }, dispatch)
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(ObjectSelector);
 
 
